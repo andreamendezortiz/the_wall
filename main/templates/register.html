@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Register</title>
+    {% load static %}
+</head>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <div class="container">
+            <!-- Navbar Brand -->
+            <a href="#" class="navbar-brand">
+                <img src="https://miro.medium.com/max/750/0*cUoY3H2fZ-ijZD1X.jpg" alt="logo" width="300">
+            </a>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <!-- Registeration Form -->
+            <form class="col-6" action="/register" method="POST">
+                <h2>New user</h2>
+                {% csrf_token %}
+                <div class="row">
+
+                    <!-- First Name -->
+                    <div class="input-group mb-4">
+                        <input id="name" type="text" name="name" required name="name" placeholder="name"
+                            class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="input-group mb-4">
+                        <input id="email" type="email" name="email" required name="email" placeholder="Email Address"
+                            class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group mb-4">
+                        <input id="password" type="password" name="password" required name="password"
+                            placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Password Confirmation -->
+                    <div class="input-group mb-4">
+                        <input id="password_conf" type="password" name="password_conf" required name="password_conf"
+                            placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center w-100">
+                        <a href="/shows" class="btn btn-primary btn-block py-2">
+                            <span class="col-auto"><button type="submit" class="btn-primary">Create</button></span>
+                        </a>
+                    </div>
+            </form>
+            <form class="col-12 mb-4" action="/login" method="POST">
+                <h2>Login</h2>
+                {% csrf_token %}
+                <div class="row">
+
+                    <!-- Email Address -->
+                    <div class="input-group mb-4">
+                        <input id="email" type="email" name="email" required name="email" placeholder="Email Address"
+                            class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group mb-4">
+                        <input id="password" type="password" name="password" required name="password"
+                            placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center w-100">
+                        <a href="/shows" class="btn btn-primary btn-block py-2">
+                            <span class="col-auto"><button type="submit" class="btn-primary">Login</button></span>
+                        </a>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('input, select').on('focus', function () {
+                $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+            });
+            $('input, select').on('blur', function () {
+                $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+            });
+        });
+
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        }
+
+        {% if messages %}
+        {% for message in messages %}
+        toastr.{{ message.tags }}("{{ message }}")
+        {% endfor %}
+        {% endif %}
+
+
+
+    </script>
+
+</body>
+
+</html>
