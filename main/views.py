@@ -42,6 +42,7 @@ def register(request):
         email=email,
         password=bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     )
+
     #se guarda el usuario en sesión
     request.session['user'] = {
         'id': user.id,
@@ -49,7 +50,6 @@ def register(request):
         'email' : user.email,
         'avatar' : user.avatar
     }
-    messages.success(request, f'Hola {user.name}')
     return redirect('/wall')
 
 
@@ -75,12 +75,14 @@ def login(request):
         'email' : user.email,
         'avatar' : user.avatar
     }
-
-
+    return redirect('/wall')
 
 def logout(request):
     request.session['user'] = None
+    messages.success(request, f'¡Nos vemos!')
+
     return redirect('/register')
+
 
 
 def wall(request):
@@ -99,16 +101,24 @@ def wall(request):
 
 def new_post(request):
     message = request.POST['message']
-    user_id = int(request.POST['user'])
 
-    Message.objects.create(message=message, user_id=user_id)
-
+    message = Message.objects.create(
+    message = message, 
+    user_id = request.session['user']['id'])
 
     messages.success(request, f'El mensaje ha sido publicado')
 
     return redirect('/wall')
 
 
+def comment(request):
+    comment = request.POST['comment']
 
-    
+    comment = Comment.objects.create(
+        comment=comment,
+        user_id = request.session['user']['id'])
+
+    return redirect('/wall')
+
+
 

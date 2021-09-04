@@ -16,14 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Register</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light py-3">
-        <div class="container">
-            <!-- Navbar Brand -->
-            <a href="#" class="navbar-brand">
-                <img src="https://miro.medium.com/max/750/0*cUoY3H2fZ-ijZD1X.jpg" alt="logo" width="300">
-            </a>
+            <div class="col-12 bg-6">
+                <div class="glitch" data-text="The Wall">The Wall</div>
+            </div>
         </div>
     </nav>
 </header>
@@ -64,8 +63,8 @@
 
                     <!-- Submit Button -->
                     <div class="text-center w-100">
-                        <a href="/shows" class="btn btn-primary btn-block py-2">
-                            <span class="col-auto"><button type="submit" class="btn-primary">Create</button></span>
+                        <a href="/wall" class="btn btn-secondary ">
+                            <button type="submit" class="btn-secondary">Create</button>
                         </a>
                     </div>
             </form>
@@ -88,8 +87,8 @@
 
                     <!-- Submit Button -->
                     <div class="text-center w-100">
-                        <a href="/shows" class="btn btn-primary btn-block py-2">
-                            <span class="col-auto"><button type="submit" class="btn-primary">Login</button></span>
+                        <a href="/wall" class="btn btn-secondary btn-block py-2">
+                            <span class="col-auto"><button type="submit" class="btn-secondary">Login</button></span>
                         </a>
                     </div>
             </form>
