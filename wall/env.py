@@ -1,1 +1,1 @@
-env = 'cloud'
+env = "local"
